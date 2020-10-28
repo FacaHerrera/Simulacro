@@ -32,17 +32,25 @@ class Revolver inherits Arma {
 	method recargarBalas(unaCantidad) {
 		balas += unaCantidad
 	}
+	
+	method esArmaSutil() {
+		return balas == 1
+	}
 }
 
 class Escopeta inherits Arma {
 	
 	override method utilizarseCon(unaPersona) {
-		if(unaPersona.estaHerida()) self.matarA(unaPersona)
+		if(unaPersona.herida()) self.matarA(unaPersona)
 		else self.herirA(unaPersona)
 	}
 	
 	method herirA(unaPersona) {
 		unaPersona.herirse()
+	}
+	
+	method esArmaSutil() {
+		return false
 	}
 	
 }
@@ -55,6 +63,10 @@ class CuerdaDePiano inherits Arma {
 	
 	method esDeBuenaCalidad() {
 		return true // Duda
+	}
+	
+	method esArmaSutil() {
+		return true
 	}
 	
 }
