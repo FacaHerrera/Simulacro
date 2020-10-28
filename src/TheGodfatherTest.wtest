@@ -1,0 +1,47 @@
+import Armas.*
+import Personas.*
+import Familias.*
+import Rangos.*
+import Traiciones.*
+
+describe "Test de armas" {
+	
+	var revolveraso
+	var escopetarda
+	var cuerdovich
+	var unWachin
+	var laFlia
+	var elFaca
+	
+	fixture {
+		
+		revolveraso = new Revolver(balas = 10)
+		escopetarda = new Escopeta()
+		cuerdovich = new CuerdaDePiano(buenaCalidad = true)
+		laFlia = new Familia(miembros = [unWachin], donFamiliar = elFaca, traiciones = [])
+		elFaca = new Persona(familia = laFlia, rango = don, lealtad = 100, herida = false, estaVivo = true)
+		unWachin = new Persona(familia = laFlia, rango = soldado, lealtad = 100, herida = false, estaVivo = true)
+	}
+	
+	test "El revolver mata de un tiro" {
+		
+		revolveraso.utilizarseCon(unWachin)
+		assert.that(unWachin.duermeConLosPeces())
+	}
+	
+	test "La escopeta te la vuela pero no es tan precisa" {
+		escopetarda.utilizarseCon(unWachin)
+		assert.that(unWachin.herida())
+	}
+	
+	test "Si estas herido, ahora si la escopeta te la vuela " {
+		unWachin.herirse()
+		escopetarda.utilizarseCon(unWachin)
+		assert.that(unWachin.duermeConLosPeces())
+	}
+	
+	test "Un hilito nashe te liquida" {
+		cuerdovich.utilizarseCon(unWachin)
+		assert.that(unWachin.duermeConLosPeces())
+	}
+}

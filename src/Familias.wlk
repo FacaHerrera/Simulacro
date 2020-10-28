@@ -3,7 +3,7 @@ import Armas.*
 class Familia {
 	
 	var property miembros = []
-	var property don
+	var property donFamiliar
 	var property traiciones = []
 	
 	method peligroso() {

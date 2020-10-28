@@ -6,6 +6,10 @@ class Arma {
 		unaPersona.morirse()
 	}
 	
+	method herirA(unaPersona) {
+		unaPersona.herirse()
+	}
+	
 }
 
 class Revolver inherits Arma {
@@ -19,6 +23,10 @@ class Revolver inherits Arma {
 		
 		self.matarA(unaPersona)
 		self.gastarUnaBala()
+	}
+	
+	override method herirA(unaPersona) {
+		
 	}
 	
 	method tieneBalas() {
@@ -45,10 +53,6 @@ class Escopeta inherits Arma {
 		else self.herirA(unaPersona)
 	}
 	
-	method herirA(unaPersona) {
-		unaPersona.herirse()
-	}
-	
 	method esArmaSutil() {
 		return false
 	}
@@ -57,12 +61,11 @@ class Escopeta inherits Arma {
 
 class CuerdaDePiano inherits Arma {
 	
-	override method utilizarseCon(unaPersona) {
-		if(self.esDeBuenaCalidad()) self.matarA(unaPersona)
-	}
+	const buenaCalidad
 	
-	method esDeBuenaCalidad() {
-		return true // Duda
+	override method utilizarseCon(unaPersona) {
+		if(buenaCalidad) self.matarA(unaPersona)
+		else self.herirA(unaPersona)
 	}
 	
 	method esArmaSutil() {
