@@ -7,7 +7,7 @@ class Persona {
 	var property rango
 	var property lealtad
 	var property herida
-	var property vida
+	var property estaVivo
 	
 	method agregar(unArma) {
 		armas.add(unArma)
@@ -18,7 +18,7 @@ class Persona {
 	}
 	
 	method morirse() {
-		self.vida(0)
+		self.estaVivo(false)
 	}
 	
 	method armaMasAMano() {
@@ -26,7 +26,7 @@ class Persona {
 	}
 	
 	method duermeConLosPeces() {
-		return vida == 0
+		return !self.estaVivo()
 	}
 	
 	method cantidadDeArmas() {
@@ -44,7 +44,7 @@ class Persona {
 		return armas.any({unArma => unArma.esArmaSutil()})
 	}
 	
-	method hacerSuTrabajoCon(otraPersona) {
+	method atacarA(otraPersona) {
 		rango.hacerTrabajoCon(self, otraPersona)
 	}
 	

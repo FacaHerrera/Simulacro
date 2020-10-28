@@ -4,6 +4,7 @@ class Familia {
 	
 	var property miembros = []
 	var property don
+	var property traiciones = []
 	
 	method peligroso() {
 		const vivos = self.miembrosVivos()
@@ -27,7 +28,7 @@ class Familia {
 			throw new Exception(message = "Los miembros de la familia enemiga ya estan todos muertos!")
 		}
 		
-		miembros.forEach({unMiembro => unMiembro.hacerSuTrabajoCon(otraFamilia.peligroso())})
+		miembros.forEach({unMiembro => unMiembro.atacarA(otraFamilia.peligroso())})
 	} // DUDA
 	
 	method reorganizarSubjefes() {
@@ -49,6 +50,18 @@ class Familia {
 		self.reorganizarSubjefes()
 		self.nombrarNuevoDon()
 		self.aumentarLealtadMasivamenteEn(1.1)
+	}
+	
+	method agregarTraicion(unaTraicion) {
+		traiciones.add(unaTraicion)
+	}
+	
+	method lealtadPromedio() {
+		return miembros.sum({unMiembro => unMiembro.lealtad()}) / miembros.size()
+	}
+	
+	method sufrirAtaqueDe(unTraidor) {
+		miembros.forEach({unMiembro => unTraidor.atacarA(unMiembro)})
 	}
 	
 }

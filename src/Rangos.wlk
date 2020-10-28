@@ -16,7 +16,7 @@ object don inherits Rango {
 	
 	override method hacerTrabajoCon(unaPersona, otraPersona) {
 		const subordinado = subordinados.anyOne()
-		subordinado.hacerSuTrabajoCon(otraPersona)
+		subordinado.atacarA(otraPersona)
 		//subordinados.anyOne({unSubordinado => unSubordinado.hacerSutrabajoCon(unaPersona)})
 	}
 	
